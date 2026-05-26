@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const MIMO_API_URL = "http://localhost:19911/v1/chat/completions";
+const MIMO_API_URL = process.env.MIMO_API_URL || "http://localhost:19911/v1/chat/completions";
+const MIMO_API_KEY = process.env.MIMO_API_KEY || "";
 
 export async function POST(req: NextRequest) {
   try {
@@ -41,9 +42,16 @@ IMPORTANT: Return ONLY the JSON array, nothing else.`,
       content: `Generate a quiz from this study material:\n\n${material}`,
     };
 
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+    if (MIMO_API_KEY) {
+      headers["Authorization"] = `Bearer ${MIMO_API_KEY}`;
+    }
+
     const response = await fetch(MIMO_API_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers,
       body: JSON.stringify({
         model: "mimo-v2.5-pro",
         messages: [systemMessage, userMessage],

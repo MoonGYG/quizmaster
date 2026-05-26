@@ -36,6 +36,44 @@ const QUIZ_TYPES = [
   { id: "short-answer", label: "Short Answer", icon: BookOpen },
 ];
 
+const SAMPLE_QUIZ: Question[] = [
+  {
+    question: "Which planet in our solar system is known as the 'Red Planet'?",
+    type: "multiple-choice",
+    options: ["Venus", "Mars", "Jupiter", "Saturn"],
+    correct: "Mars",
+    explanation: "Mars is called the Red Planet because of iron oxide (rust) on its surface, which gives it a reddish appearance.",
+  },
+  {
+    question: "The Sun is primarily composed of hydrogen and helium.",
+    type: "true-false",
+    options: ["True", "False"],
+    correct: "True",
+    explanation: "The Sun is about 73% hydrogen and 25% helium by mass. These elements fuel nuclear fusion in its core.",
+  },
+  {
+    question: "What is the largest planet in our solar system?",
+    type: "short-answer",
+    options: [],
+    correct: "Jupiter",
+    explanation: "Jupiter is the largest planet, with a mass more than twice that of all other planets combined.",
+  },
+  {
+    question: "Which planet has the most known moons in the solar system?",
+    type: "multiple-choice",
+    options: ["Jupiter", "Saturn", "Uranus", "Neptune"],
+    correct: "Saturn",
+    explanation: "Saturn has over 140 known moons, surpassing Jupiter's count as of recent discoveries.",
+  },
+  {
+    question: "The asteroid belt is located between the orbits of Mars and Jupiter.",
+    type: "true-false",
+    options: ["True", "False"],
+    correct: "True",
+    explanation: "The main asteroid belt lies between Mars and Jupiter, containing millions of rocky objects orbiting the Sun.",
+  },
+];
+
 export default function Home() {
   const [material, setMaterial] = useState("");
   const [numQuestions, setNumQuestions] = useState(5);
@@ -76,6 +114,20 @@ export default function Home() {
       setError("Network error. Please try again.");
       setState("input");
     }
+  };
+
+  const handleExample = () => {
+    setMaterial(
+      "The Solar System consists of the Sun and the celestial bodies bound to it by gravity, including eight planets, their moons, dwarf planets, asteroids, and comets. The four inner planets — Mercury, Venus, Earth, and Mars — are rocky terrestrial worlds, while the outer four — Jupiter, Saturn, Uranus, and Neptune — are massive gas and ice giants. The Sun itself contains about 99.86% of the total mass of the Solar System and provides the energy that sustains life on Earth."
+    );
+    setNumQuestions(5);
+    setDifficulty("medium");
+    setQuizType("mixed");
+    setQuestions(SAMPLE_QUIZ);
+    setCurrentQ(0);
+    setAnswers({});
+    setShowAnswer(false);
+    setState("quiz");
   };
 
   const handleAnswer = (answer: string) => {
@@ -150,6 +202,19 @@ export default function Home() {
         </header>
 
         <div className="max-w-4xl mx-auto space-y-5">
+          {/* Try Example Button */}
+          <button
+            onClick={handleExample}
+            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold transition-all hover:scale-[1.01]"
+            style={{
+              border: "2px dashed var(--accent-cyan)",
+              background: "rgba(6, 182, 212, 0.06)",
+              color: "var(--accent-cyan)",
+            }}
+          >
+            ⚡ Try Example — Solar System Quiz
+          </button>
+
           {/* Material Input */}
           <div className="glass-card p-6">
             <h2 className="text-sm font-semibold mb-3 uppercase tracking-wider" style={{ color: "var(--text-muted)" }}>
