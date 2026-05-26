@@ -1,4 +1,5 @@
 # 🧠 QuizMaster
+\n🚀 **[Live Demo](https://quizmaster-green.vercel.app)**
 
 **AI Quiz Generator** — Describe any topic, and QuizMaster instantly generates interactive multiple-choice quizzes with explanations, powered by MiMo v2.5 Pro.
 
