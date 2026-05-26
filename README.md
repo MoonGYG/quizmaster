@@ -1,44 +1,94 @@
-# QuizMaster
+# 🧠 QuizMaster
 
-AI Quiz Generator — Turn any study material into an interactive quiz.
+**AI Quiz Generator** — Describe any topic, and QuizMaster instantly generates interactive multiple-choice quizzes with explanations, powered by MiMo v2.5 Pro.
 
-## Features
+![QuizMaster Dashboard](proof/commit-log.png)
 
-- 📚 **Material Input**: Paste any text — textbook, notes, articles
-- 📝 **4 Quiz Types**: Multiple Choice, True/False, Short Answer, Mixed
-- 🎯 **3 Difficulty Levels**: Easy, Medium, Hard
-- 🔢 **Flexible Count**: 5, 10, 15, or 20 questions
-- ✅ **Interactive Quiz**: Click to answer, see instant feedback
-- 💡 **Explanations**: Every answer comes with an explanation
-- 📊 **Score Tracking**: Percentage score + review all answers
-- 🔄 **Retry**: Take the same quiz again or generate a new one
+---
 
-## Stack
+## ✨ Features
 
-- Next.js 16 (App Router, TypeScript)
-- Tailwind CSS with dark blue/navy gradient theme
-- Lucide React icons
-- MiMo AI API (no-auth via local proxy)
+- **🎯 Topic-Based Generation** — Enter any subject and get a full quiz in seconds
+- **📝 Multiple Question Types** — Multiple choice with 4 options each
+- **💡 AI Explanations** — Every answer comes with a detailed explanation
+- **⚡ Instant Results** — Real-time grading with score breakdown
+- **🎨 Neobrutalist UI** — Bold borders, strong shadows, high-contrast design
+- **📋 Copy & Export** — Copy quiz JSON or export for sharing
 
-## Getting Started
+---
+
+## 🛠 Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 16 (App Router) |
+| Styling | Tailwind CSS 4 |
+| AI Engine | MiMo v2.5 Pro (Xiaomi) |
+| Language | TypeScript |
+| Design | Neobrutalism |
+
+---
+
+## 🚀 Getting Started
 
 ```bash
+# Install dependencies
+npm install
+
+# Set environment variables
+cp .env.example .env.local
+
+# Run development server
 npm run dev
-# Open http://localhost:3104
 ```
 
-## API
+Open [http://localhost:3000](http://localhost:3000)
 
-POST `/api/generate`
+---
 
-```json
-{
-  "material": "Your study material text...",
-  "numQuestions": 5,
-  "quizType": "mixed",
-  "difficulty": "medium"
-}
+## ⚙️ Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `MIMO_API_URL` | MiMo API endpoint | `http://localhost:19911/v1/chat/completions` |
+| `MIMO_API_KEY` | API key for authentication | _(empty)_ |
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── app/
+│   ├── api/generate/route.ts   # Quiz generation endpoint
+│   ├── globals.css              # Neobrutalist theme
+│   ├── layout.tsx               # Root layout
+│   └── page.tsx                 # Main quiz builder
 ```
 
-Quiz types: `multiple-choice`, `true-false`, `short-answer`, `mixed`
-Difficulties: `easy`, `medium`, `hard`
+---
+
+## 🎨 Theme
+
+Neobrutalist design with **orange** (#FF6B35) accent on cream (#FFFBF0) background. Bold 3px borders, hard drop shadows, uppercase labels, and zero border-radius.
+
+---
+
+## 🤖 Powered by MiMo v2.5 Pro
+
+Built with **[MiMo v2.5 Pro](https://huggingface.co/XiaomiMiMo)** by **Xiaomi** — a reasoning-optimized language model excelling in structured content generation.
+
+| Detail | Info |
+|--------|------|
+| Model | MiMo v2.5 Pro |
+| Provider | Xiaomi AI Lab |
+| Strengths | Reasoning, structured output, education |
+| Integration | OpenAI-compatible API |
+
+> *"Crafted with MiMo v2.5 Pro"* — All AI features (quiz generation, answer validation, explanations) are powered by MiMo v2.5 Pro.
+
+---
+
+## 📜 License
+
+MIT
